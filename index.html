@@ -1301,6 +1301,14 @@ addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(f
 if(fine&&!reduced){var cur=by('cur');addEventListener('mousemove',function(e){cur.style.transform='translate3d('+e.clientX+'px,'+e.clientY+'px,0)';var t=e.target;cur.classList.toggle('on',!!(t.closest&&t.closest('a,button,tr,.an,select,input,summary,.ea-kpi,.bar-row,.pick,#hero-wall rect')))},{passive:true});
  top.addEventListener('mousemove',function(e){wall.style.transform='translate3d('+((e.clientX/innerWidth-.5)*-16)+'px,'+((e.clientY/innerHeight-.5)*-12)+'px,0)'})}
 E.show('resumen',false);label();
+// el link y el QR abren directo en el muro (#resumen u otra sección se respeta)
+var h0=location.hash.slice(1);if(!h0||h0==='muro'){if('scrollRestoration' in history)history.scrollRestoration='manual';E.show('muro',false);
+ // en el celular los filtros ocupan la pantalla: se baja hasta el muro mismo
+ var irMuro=function(){var t=innerWidth<=900?d.querySelector('#muro .ea-muro'):by('muro');t.style.scrollMarginTop='50px';t.scrollIntoView({behavior:'instant',block:'start'})};
+ // lo de arriba termina de dibujarse después de cargar: se realinea hasta que el usuario se mueva o pasen 3 s
+ var quieto=true,ro=window.ResizeObserver?new ResizeObserver(function(){if(quieto)irMuro()}):null,soltar=function(){quieto=false;if(ro)ro.disconnect()};
+ ['wheel','touchstart','keydown','mousedown'].forEach(function(ev){addEventListener(ev,soltar,{once:true,passive:true})});setTimeout(soltar,3000);
+ if(ro)ro.observe(d.body);if(d.readyState==='complete')requestAnimationFrame(irMuro);else addEventListener('load',function(){requestAnimationFrame(irMuro)})}
 window.__ok=true;
 })();
 </script></body></html>
