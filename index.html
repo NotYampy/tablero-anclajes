@@ -634,7 +634,7 @@ html.pres .ea-card .ea-note{font-size:1rem}
   <section class="ea-page" id="guia" role="tabpanel" aria-labelledby="tab-guia">
     <div class="ea-card wide" id="niveles-guia">
       <h2>Los seis niveles de atención</h2>
-      <p class="ea-note">De mayor a menor urgencia. Es el color de cada anclaje en el muro, en Revit y en el visor IFC. Los plazos son objetivos operativos propuestos en el Anexo técnico del equipo, no norma INVIAS; todos los umbrales, pesos y plazos están por validar con DYWIDAG.</p>
+      <p class="ea-note">De mayor a menor urgencia. Es el color de cada anclaje en el muro, en Revit y en el visor IFC. Los plazos son objetivos operativos propuestos en el Anexo técnico del equipo, no norma INVIAS; los umbrales, pesos y plazos los definió el equipo con base en PTI, FHWA, INVIAS y NSR-10.</p>
       <div class="ea-tablebox">
         <table class="ea-table" id="g-niveles" data-source="por_nivel" data-row-key="nivel">
           <thead><tr><th data-field="nivel">Nivel</th><th data-field="significado">Qué significa</th><th data-field="plazo" class="sm-hide">Qué hacer</th><th data-field="n">Anclajes</th></tr></thead>
@@ -714,7 +714,7 @@ html.pres .ea-card .ea-note{font-size:1rem}
       const t = {
         "Crítica": ["Peligro inmediato: la última inspección encontró condición crítica, o el puntaje es de " + p("nivel_atencion_critico_desde") + " o más.", "De inmediato: proteger a las personas, restringir el acceso, notificar y pedir evaluación profesional urgente. No manipular el pretensado."],
         "Alta": ["Puntaje de " + p("nivel_atencion_alto_desde") + " a " + (Number(p("nivel_atencion_critico_desde")) - 1) + ": varias alertas a la vez, o una grave como la pérdida de carga.", "Inspección detallada en máximo " + p("dias_inspeccion_detallada_alta") + " días y acción definida en máximo " + p("dias_definir_accion_alta") + " días."],
-        "Advertencia": ["Puntaje bajo, pero la inspección vio una anomalía (condición vulnerable o corrosión) o la carga está fuera de criterio.", "Igual que Alta (criterio del agente, por validar)."],
+        "Advertencia": ["Puntaje bajo, pero la inspección vio una anomalía (condición vulnerable o corrosión) o la carga está fuera de criterio.", "Igual que Alta (criterio definido por el equipo)."],
         "Seguimiento": ["Puntaje bajo (alertas menores) o deterioro leve.", "Decidir qué hacer en máximo " + p("dias_habiles_decision_seguimiento") + " días hábiles y volver a inspeccionar a los " + p("meses_reinspeccion_seguimiento") + " meses. Si la revisión está vencida, programarla dentro de esos " + p("dias_habiles_decision_seguimiento") + " días."],
         "Indeterminado": ["No significa bajo riesgo: sin alertas, pero faltan datos o una inspección vigente, o hay un valor fuera de rango por verificar. La ficha de cada anclaje dice cuál.", "Plan para recuperar el dato o la inspección en máximo " + p("dias_habiles_plan_indeterminado") + " días hábiles."],
         "Conforme": ["Conforme en lo evaluado: inspección vigente y normal, datos completos, sin valores fuera de rango y sin alertas. No certifica el tendón enterrado.", "Próxima revisión según el plan: " + p("plazo_revision_meses") + " meses, o " + p("plazo_revision_reducido_meses") + " si el talud es de criticidad alta."]
